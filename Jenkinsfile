@@ -29,16 +29,10 @@ pipeline {
             }
         }
         stage ('Deploy to tomcat server') {
-           steps{
-           script{
+                     steps{
+                        deploy adapters: [tomcat9(credentialsId: '5e98a579-f436-492c-b044-ea3f5557a8a2	', path: '', url: 'http://localhost:8080/')], contextPath: 'empappwar', war: '*/*.war'
 
-           def tomcatUser = 'admin'
-           def tomcatPassword = 'admin'
-              deploy adapters: [tomcat9 (url: 'http://localhost:8080/',username: tomcatUser, password: tomcatPassword )], contextPath: '/empapp', war: '**/*.war'
-            }
-           //Here i used manual credential hardcoding instead of configuring tomcat_server
-           //credentials in jenkins
-           }
-        }
+                     }
+                 }
     }
 }
