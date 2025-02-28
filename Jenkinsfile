@@ -30,8 +30,9 @@ pipeline {
         }
         stage ('Deploy to tomcat server') {
            steps{
-              deploy adapters: [tomcat9(credentialsId: 'tomcat_server', path: '', url: 'http://localhost:8080/')], contextPath: '/empapp', war: '**/*.war'
+              deploy adapters: [tomcat9(credentialsId: '5e98a579-f436-492c-b044-ea3f5557a8a2', path: '', url: 'http://localhost:8080/')], contextPath: '/empapp', war: '**/*.war'
             }
+           //Here i gave credentialsId of global which is admin admin
         }
     }
 }
