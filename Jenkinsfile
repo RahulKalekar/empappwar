@@ -24,8 +24,13 @@ pipeline {
                 // failed, record the test results and archive the jar file.
                 success {
                     junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/empappwar.war'
+                    archiveArtifacts 'target/empapp.war'
                 }
+            }
+        }
+        stage ('Deploy to tomcat server') {
+           steps{
+              deploy adapters: [tomcat9(credentialsId: 'tomcat_server', path: '', url: 'http://localhost:8080/')], contextPath: '/empapp', war: '**/*.war'
             }
         }
     }
